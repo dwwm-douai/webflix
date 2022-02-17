@@ -28,6 +28,29 @@ Route::get('/bonjour/{name}', [PolitesseController::class, 'helloSomeone']);
 Route::get('/a-propos', [AboutController::class, 'index']);
 Route::get('/a-propos/{user}', [AboutController::class, 'show']);
 
+// Affiche le formulaire
+Route::get('/categories/creer', function () {
+    return view('categories.create');
+});
+
+// Traite le formulaire
+Route::post('/categories/creer', function () {
+    // Vérifier les erreurs
+    request()->validate([
+        'name' => 'required|min:3|max:10',
+        // 'email' => 'required|email',
+    ]);
+
+    // dump(request('name'));
+
+    // S'il n'y a pas d'erreurs, on crée la catégorie
+    Category::create([
+        'name' => request('name'),
+    ]);
+
+    return redirect('/exercice/categories');
+});
+
 Route::get('/exercice/categories', function () {
     return view('exercice.categories', [
         'categories' => Category::all()
