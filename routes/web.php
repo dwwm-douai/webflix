@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PolitesseController;
 use App\Models\Category;
 use App\Models\Movie;
@@ -27,6 +28,8 @@ Route::get('/bonjour/{name}', [PolitesseController::class, 'helloSomeone']);
 
 Route::get('/a-propos', [AboutController::class, 'index']);
 Route::get('/a-propos/{user}', [AboutController::class, 'show']);
+
+Route::get('/categories', [CategoryController::class, 'index']);
 
 // Affiche le formulaire
 Route::get('/categories/creer', function () {
