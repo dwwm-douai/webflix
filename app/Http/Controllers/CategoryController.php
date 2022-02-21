@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -37,7 +37,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Vérifier les erreurs
+        request()->validate([
+            'name' => 'required|min:3|max:10',
+            // 'email' => 'required|email',
+        ]);
+
+        // dump(request('name'));
+
+        // S'il n'y a pas d'erreurs, on crée la catégorie
+        Category::create([
+            'name' => request('name'),
+        ]);
+
+        return redirect('/categories');
     }
 
     /**
