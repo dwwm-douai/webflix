@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('categories.index', [
-            'categories' => Category::all(),
+            'categories' => Category::latest()->paginate(8),
         ]);
     }
 
@@ -39,18 +39,18 @@ class CategoryController extends Controller
     {
         // Vérifier les erreurs
         request()->validate([
-            'name' => 'required|min:3|max:10',
+            'name' => 'required|min:3|max:20',
             // 'email' => 'required|email',
         ]);
 
         // dump(request('name'));
 
         // S'il n'y a pas d'erreurs, on crée la catégorie
-        Category::create([
+        $category = Category::create([
             'name' => request('name'),
         ]);
 
-        return redirect('/categories');
+        return redirect('/categories')->with('status', 'La catégorie '.$category->name.' a été créée.');
     }
 
     /**
