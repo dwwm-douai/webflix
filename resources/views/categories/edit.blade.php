@@ -1,6 +1,9 @@
 @extends('layouts.base')
 
 @section('content')
+    <a href="/categories">Retour aux catégories</a>
+    <h1>Modifier {{ $category->name }}</h1>
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0 list-unstyled">
@@ -11,7 +14,6 @@
         </div>
     @endif
 
-    <h1>Modifier {{ $category->name }}</h1>
     <form action="/categories/{{ $category->id }}" method="post">
         @csrf @method('put')
         <input type="text" name="name" placeholder="Nom..." class="form-control"
