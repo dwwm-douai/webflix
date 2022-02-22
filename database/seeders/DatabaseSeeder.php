@@ -28,9 +28,20 @@ class DatabaseSeeder extends Seeder
         }
 
         // Category::factory(30)->create();
-        
-        // .......
-        
+
+        $response = Http::get('https://api.themoviedb.org/3/movie/popular?api_key=ebc0a4ad59da5f80113ec7d1142c72a7&language=fr');
+        $movies = $response->json()['results'];
+
+        foreach ($movies as $movie) {
+            Movie::factory()->create([
+                'title' => $movie['title'],
+                'synopsys' => $movie['overview'],
+                'released_at' => $movie['release_date'],
+                'cover' => 'https://image.tmdb.org/t/p/w500'.$movie['poster_path'],
+                // https://image.tmdb.org/t/p/w500/1234.jpg
+            ]);
+        }
+
         Movie::factory(30)->create();
     }
 }
