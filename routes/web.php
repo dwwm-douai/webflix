@@ -37,7 +37,7 @@ Route::post('/categories/creer', [CategoryController::class, 'store']);
 Route::get('/categories/{category}', [CategoryController::class, 'show']);
 Route::get('/categories/{category}/modifier', [CategoryController::class, 'edit']);
 Route::put('/categories/{category}', [CategoryController::class, 'update']);
-
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 
 
 
