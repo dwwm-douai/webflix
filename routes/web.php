@@ -35,7 +35,8 @@ Route::get('/categories/creer', [CategoryController::class, 'create']);
 // Traite le formulaire
 Route::post('/categories/creer', [CategoryController::class, 'store']);
 Route::get('/categories/{category}', [CategoryController::class, 'show']);
-
+Route::get('/categories/{category}/modifier', [CategoryController::class, 'edit']);
+Route::put('/categories/{category}', [CategoryController::class, 'update']);
 
 
 
