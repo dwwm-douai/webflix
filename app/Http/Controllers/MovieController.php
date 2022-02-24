@@ -41,7 +41,6 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'title' => 'email',
             // Le title est obligatoire, doit faire 2 caractères min et doit être unique.
             // Le synopsys est obligatoire et doit faire 10 caractères
             // La durée est obligatoire (et doit être un nombre)
@@ -49,6 +48,13 @@ class MovieController extends Controller
             // Le champ cover est obligatoire, doit être une image et doit faire 1mo maximum.
             // Released at est obligatoire et doit être une date.
             // Le champ category_id doit exister dans la base de données.
+            'title' => 'required|min:2|unique:movies,title',
+            'synopsys' => 'required|min:10',
+            'duration' => 'required|numeric',
+            'youtube' => 'nullable',
+            'cover' => 'required|image|max:1024',
+            'released_at' => 'required|date',
+            'category' => 'exists:categories,id',
         ]);
     }
 
