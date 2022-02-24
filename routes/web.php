@@ -100,3 +100,7 @@ Route::get('/exercice/films/{id}', function ($id) {
         'movie' => $movie
     ]);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
