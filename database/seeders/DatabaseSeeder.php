@@ -24,7 +24,10 @@ class DatabaseSeeder extends Seeder
         $genres = $response->json()['genres'];
 
         foreach ($genres as $genre) {
-            Category::factory()->create(['name' => $genre['name']]);
+            Category::factory()->create([
+                'id' => $genre['id'],
+                'name' => $genre['name'],
+            ]);
         }
 
         // Category::factory(30)->create();
