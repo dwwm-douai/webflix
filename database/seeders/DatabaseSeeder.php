@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
                 'synopsys' => $movie['overview'],
                 'released_at' => $movie['release_date'],
                 'cover' => 'https://image.tmdb.org/t/p/w500'.$movie['poster_path'],
+                'category_id' => $movie['genre_ids'][0],
                 // https://image.tmdb.org/t/p/w500/1234.jpg
             ]);
         }

@@ -22,4 +22,9 @@ class Movie extends Model
 
         return $hours.'h'.$minutes;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
