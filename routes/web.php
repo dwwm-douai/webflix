@@ -41,10 +41,14 @@ Route::put('/categories/{category}', [CategoryController::class, 'update']);
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 
 // Route::get('/films', [MovieController::class, 'index']);
+// Route::get('/films/creer', [MovieController::class, 'create']);
+// Route::post('/films/creer', [MovieController::class, 'store']);
 // Route::get('/films/{movie}', [MovieController::class, 'show']);
 
 Route::controller(MovieController::class)->group(function () {
     Route::get('/films', 'index');
+    Route::get('/films/creer', 'create');
+    Route::post('/films/creer', 'store');
     Route::get('/films/{movie}', 'show');
 });
 

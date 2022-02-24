@@ -9,7 +9,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <h1>{{ $movie->title }}</h1>
-                <p>{{ $movie->released_at }} | {{ $movie->duration }}</p>
+                <p>{{ $movie->released_at->translatedFormat('d F Y') }} | {{ $movie->category?->name }} | {{ $movie->formatDuration() }}</p>
                 <div class="mb-4">
                     {{ $movie->synopsys }}
                 </div>
