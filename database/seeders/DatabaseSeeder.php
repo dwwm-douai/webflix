@@ -36,10 +36,13 @@ class DatabaseSeeder extends Seeder
         $movies = $response->json()['results'];
 
         foreach ($movies as $movie) {
+            $movieSupp = Http::get('https://api.themoviedb.org/3/movie/'.$movie['id'].'?api_key=ebc0a4ad59da5f80113ec7d1142c72a7&language=fr-FR&append_to_response=credits,videos')->json();
+
             Movie::factory()->create([
                 'title' => $movie['title'],
                 'synopsys' => $movie['overview'],
                 'released_at' => $movie['release_date'],
+                'youtube' => $movieSupp['videos']['results'][0]['key'] ?? null,
                 'cover' => 'https://image.tmdb.org/t/p/w500'.$movie['poster_path'],
                 'category_id' => $movie['genre_ids'][0],
                 // https://image.tmdb.org/t/p/w500/1234.jpg
