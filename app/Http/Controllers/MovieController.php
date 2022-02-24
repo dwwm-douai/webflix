@@ -56,6 +56,20 @@ class MovieController extends Controller
             'released_at' => 'required|date',
             'category' => 'exists:categories,id',
         ]);
+
+        // Ajout du film dans la BDD
+        Movie::create([
+            'title' => request('title'),
+            'synopsys' => request('synopsys'),
+            'duration' => request('duration'),
+            'youtube' => request('youtube'),
+            // Pour faire l'upload
+            'cover' => '/storage/'.request('cover')->store('covers', 'public'), // /storage/covers/123456.jpg
+            'released_at' => request('released_at'),
+            'category_id' => request('category'),
+        ]);
+
+        return redirect('/films')->with('status', 'Le film a été créé.');
     }
 
     /**
