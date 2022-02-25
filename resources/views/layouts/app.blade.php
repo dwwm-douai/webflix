@@ -9,19 +9,27 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!-- <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/bonjour">Hello</a></li>
+            <li><a href="/au-revoir">Good bye</a></li>
+            <li><a href="/a-propos">A propos</a></li>
+            <li><a href="/exercice/categories">Catégories (EXO)</a></li>
+            <li><a href="/exercice/films">Films (EXO)</a></li>
+            <li><a href="/categories/creer">Ajouter une catégorie</a></li>
+        </ul> -->
+
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -78,9 +86,23 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <div class="container py-5 my-5">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+    
             @yield('content')
-        </main>
+        </div>
+
+        <footer>
+            <div class="container">
+                <p class="text-center">Copyright &copy; {{ date('Y') }} - Webflix</p>
+            </div>
+        </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
